@@ -40,7 +40,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Sample Header</h1>
+        <h1>Monsters Rolodex</h1>
         <SearchInput textChangeHandler={this.filterNames} placeholder="Find Monster(s)"/>
         <CardList monsters={filteredUsers} />
         <button onClick={this.initializeMonstersHandler}>
