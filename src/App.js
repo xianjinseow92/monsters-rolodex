@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       monsters: [],
       searchField: "",
+      title: ""
     };
   }
 
@@ -30,8 +31,13 @@ class App extends Component {
     this.setState((_) => ({ searchField: searchInputValue }));
   };
 
+  changeTitle = (inputText) => {
+    const titleText = inputText.target.value;
+    this.setState(_ => ({title: titleText}))
+  }
+
   render() {
-    const { monsters, searchField } = this.state;
+    const { monsters, searchField, title } = this.state;
     const filteredUsers = monsters.filter((monster) =>
       monster.name.toLowerCase().includes(searchField.toLowerCase())
     );
@@ -40,8 +46,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Monsters Rolodex</h1>
+        <h1>{title ? title : "Change Me!"}</h1>
         <SearchInput textChangeHandler={this.filterNames} placeholder="Find Monster(s)"/>
+        <br/>
+        <SearchInput textChangeHandler={this.changeTitle} placeholder="Change the Title!"/>
         <CardList monsters={filteredUsers} />
         <button onClick={this.initializeMonstersHandler}>
           Create Monsters
